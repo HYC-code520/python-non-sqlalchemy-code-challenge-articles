@@ -80,11 +80,11 @@ class Author:
 
         
 
-    def add_article(self, magazine, title):
+    def add_article(self, magazine, title): # study here
         new_article = Article(self, magazine, title)
         return new_article
 
-    def topic_areas(self):
+    def topic_areas(self): # study here
         magazines = self.magazines()
         if not magazines:
             return None
@@ -149,8 +149,28 @@ class Magazine:
             title_list.append(article.title)
         return title_list
 
-    def contributing_authors(self):
-        pass
+    def contributing_authors(self): # study here
+        articles = self.articles()
+        if not articles:
+            return None
+        author_count = {}
+        for article in articles:
+            author = article.author
+            if author not in author_count:
+                author_count[author] = 1
+            else:
+                author_count[author] += 1
+        contributing_authors_list = []
+        for author, count in author_count.items():
+            if count > 2:
+                contributing_authors_list.append(author)
+
+        if not contributing_authors_list:
+            return None
+        
+        return contributing_authors_list
+
+
 
 
 
