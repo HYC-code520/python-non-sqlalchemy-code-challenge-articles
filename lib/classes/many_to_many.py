@@ -81,10 +81,18 @@ class Author:
         
 
     def add_article(self, magazine, title):
-        pass
+        new_article = Article(self, magazine, title)
+        return new_article
 
     def topic_areas(self):
-        pass
+        magazines = self.magazines()
+        if not magazines:
+            return None
+        category_list = []
+        for magazine in magazines:
+            category_list.append(magazine.category)
+        return list(set(category_list))
+           
 
 class Magazine:
     def __init__(self, name, category):
@@ -133,7 +141,28 @@ class Magazine:
 
 
     def article_titles(self):
-        pass
+        articles = self.articles()
+        if not articles:  # Check if there are no articles
+            return None
+        title_list = []
+        for article in articles:
+            title_list.append(article.title)
+        return title_list
 
     def contributing_authors(self):
         pass
+
+
+
+author_1 = Author("Carry Bradshaw")
+author_2 = Author("Nathaniel Hawthorne")
+
+magazine_1 = Magazine("Vogue", "Fashion")
+magazine_2 = Magazine("AD", "Architecture")
+
+a1 =Article(author_1, magazine_1, "How to wear a tutu with style")
+a2 = Article(author_1, magazine_1, "How to be single and happy")
+a3 = Article(author_1, magazine_1, "Dating life in NYC")
+a4 = Article(author_1, magazine_2, "Carrara Marble is so 2020")
+a5 = Article(author_2, magazine_2, "2023 Eccentric Design Trends")
+
